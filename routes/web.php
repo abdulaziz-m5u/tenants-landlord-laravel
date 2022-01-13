@@ -32,4 +32,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('permissions', \App\Http\Controllers\Admin\PermissionController::class);
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+
+    Route::resource('properties', \App\Http\Controllers\Admin\PropertyController::class);
+    Route::resource('documents', \App\Http\Controllers\Admin\DocumentController::class);
 });

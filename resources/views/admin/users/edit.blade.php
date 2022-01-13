@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xs-12 form-group">
                     <label for="password" class="control-label">Password</label>
-                        <input type="text" name="password" value="{{ old('password', $user->password) }}" class="form-control" >
+                        <input type="text" name="password" value="{{ old('password', $user->password) }}" class="form-control" required >
                         <p class="help-block"></p>
                         @if($errors->has('password'))
                             <p class="help-block text-danger">

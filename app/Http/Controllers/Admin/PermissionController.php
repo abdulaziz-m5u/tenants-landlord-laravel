@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
-use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Requests\Admin\StoreUserRequest;
-use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Http\Requests\Admin\StorePermissionRequest;
+use App\Http\Requests\Admin\UpdatePermissionRequest;
 
-class UserController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,13 +19,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (!Gate::allows('user_access')) {
+        if (! Gate::allows('permission_access')) {
             return abort(401);
         }
         
-        $users = User::all();
+        $permissions = Permission::all();
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     /**
@@ -35,13 +35,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('user_create')) {
+        if (! Gate::allows('permission_create')) {
             return abort(401);
         }
 
-        $roles = Role::get()->pluck('title', 'id');
-
-        return view('admin.users.create', compact('roles'));
+        return view('admin.permissions.create');
     }
 
     /**
@@ -50,16 +48,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUserRequest $request)
+    public function store(StorePermissionRequest $request)
     {
-        if (! Gate::allows('user_create')) {
+        if (! Gate::allows('permission_create')) {
             return abort(401);
         }
 
-        $user = User::create($request->validated() + ['password' => bcrypt($request->password)]);
-        $user->role()->sync(array_filter((array)$request->input('role')));
+        Permission::create($request->validated());
 
-        return redirect()->route('admin.users.index')->with('message', 'Created Successfully !');
+        return redirect()->route('admin.permissions.index')->with('message', 'Created Successfully !');
     }
 
     /**
@@ -79,15 +76,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Permission $permission)
     {
-        if (! Gate::allows('user_edit')) {
+        if (! Gate::allows('permission_edit')) {
             return abort(401);
         }
 
-        $roles = Role::get()->pluck('title', 'id');
-
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admin.permissions.edit', compact('permission'));
     }
 
     /**
@@ -97,16 +92,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request,User $user)
+    public function update(UpdatePermissionRequest $request,Permission $permission)
     {
-        if (! Gate::allows('user_edit')) {
+        if (! Gate::allows('permission_edit')) {
             return abort(401);
         }
 
-        $user->update($request->validated());
-        $user->role()->sync(array_filter((array)$request->input('role')));
+        $permission->update($request->validated());
 
-        return redirect()->route('admin.users.index')->with('message', 'Updated Successfully !');
+        return redirect()->route('admin.permissions.index')->with('message', 'Updated Successfully !');
     }
 
     /**
@@ -115,14 +109,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Permission $permission)
     {
-        if (! Gate::allows('user_delete')) {
+        if (! Gate::allows('permission_delete')) {
             return abort(401);
         }
 
-        $user->delete();
+        $permission->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.permissions.index')->with('message', 'Deleted Successfully !');
     }
 }

@@ -51,6 +51,7 @@
                 <div class="card-body text-center">
                     <div>
                         <h2>{{ __('Sign up') }}</h2>
+                        <p>Register as a Landlor</p>
                         <a href="{{ route('register') }}"
                            class="btn btn-lg btn-outline-light mt-3">{{ __('Register') }}</a>
                     </div>
