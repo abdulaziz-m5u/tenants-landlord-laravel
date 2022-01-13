@@ -31,15 +31,23 @@
             <svg class="nav-icon">
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-star') }}"></use>
             </svg>
-            Two-level menu
+            Management Users
         </a>
         <ul class="nav-group-items" style="height: 0px;">
             <li class="nav-item">
-                <a class="nav-link" href="#" target="_top">
+                <a class="nav-link" href="{{ route('admin.users.index') }}" target="_top">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('icons/coreui.svg#cil-bug') }}"></use>
                     </svg>
-                    Child menu
+                    Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.roles.index') }}" target="_top">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('icons/coreui.svg#cil-bug') }}"></use>
+                    </svg>
+                    Roles
                 </a>
             </li>
         </ul>
