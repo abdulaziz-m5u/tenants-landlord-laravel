@@ -71,6 +71,12 @@
     </header>
     <div class="body flex-grow-1 px-3">
         <div class="container-lg">
+            @if(session('message'))
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ session('message') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             @yield('content')
         </div>
     </div>
@@ -83,5 +89,6 @@
     </footer>
 </div>
 <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

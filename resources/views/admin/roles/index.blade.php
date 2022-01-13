@@ -32,9 +32,6 @@
                                 @endforeach
                             </td>
                             <td>
-                                @can('user_view')
-                                    <a href="{{ route('admin.roles.show',[$role->id]) }}" class="btn btn-xs btn-primary">View</a>
-                                @endcan
                                 @can('user_edit')
                                     <a href="{{ route('admin.roles.edit',[$role->id]) }}" class="btn btn-xs btn-info">Edit</a>
                                 @endcan

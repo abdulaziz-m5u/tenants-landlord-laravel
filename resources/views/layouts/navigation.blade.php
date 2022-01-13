@@ -36,18 +36,17 @@
         <ul class="nav-group-items" style="height: 0px;">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.users.index') }}" target="_top">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('icons/coreui.svg#cil-bug') }}"></use>
-                    </svg>
                     Users
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.roles.index') }}" target="_top">
-                    <svg class="nav-icon">
-                        <use xlink:href="{{ asset('icons/coreui.svg#cil-bug') }}"></use>
-                    </svg>
                     Roles
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.permissions.index') }}" target="_top">
+                    Permissions
                 </a>
             </li>
         </ul>
