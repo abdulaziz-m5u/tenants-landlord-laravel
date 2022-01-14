@@ -35,4 +35,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
     Route::resource('properties', \App\Http\Controllers\Admin\PropertyController::class);
     Route::resource('documents', \App\Http\Controllers\Admin\DocumentController::class);
+    Route::resource('tenants', \App\Http\Controllers\Admin\TenantController::class);
+    Route::resource('notes', \App\Http\Controllers\Admin\NoteController::class);
 });

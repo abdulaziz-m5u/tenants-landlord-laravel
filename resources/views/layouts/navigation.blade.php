@@ -17,6 +17,14 @@
             {{ __('Property') }}
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.tenants.index') }}">
+            <svg class="nav-icon">
+                <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+            </svg>
+            {{ __('Tenant') }}
+        </a>
+    </li>
     @endcan
 
     @can('document_access')
@@ -26,6 +34,17 @@
                 <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
             </svg>
             {{ __('Document') }}
+        </a>
+    </li>
+    @endcan
+
+    @can('note_access')
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.notes.index') }}">
+            <svg class="nav-icon">
+                <use xlink:href="{{ asset('icons/coreui.svg#cil-user') }}"></use>
+            </svg>
+            {{ __('Note') }}
         </a>
     </li>
     @endcan
